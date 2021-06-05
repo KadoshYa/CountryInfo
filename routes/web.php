@@ -13,13 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/function', function () {
-    return view('call');
-});
-
-
-Route::get('/Soap_Call', 'App\Http\Controllers\SoapController@data');
+Route::get('/', 'App\Http\Controllers\SoapController@data');

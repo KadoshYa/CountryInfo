@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Artisaninweb\SoapWrapper\SoapWrapper;
 use SoapClient;
+use Response;
 
 class SoapController extends Controller
 
@@ -52,8 +53,6 @@ class SoapController extends Controller
                 
                 $countryInfo =$soapClient->FullCountryInfo ($param2);
 
-                echo '<br><br>';
-
                 $json_output = json_encode($countryInfo);
 
                 // If the json output is needed you can use this output
@@ -69,6 +68,34 @@ class SoapController extends Controller
                     echo $e->getMessage();
         }
 
-}
+    }
+
+    public function getCountryDetails($country)
+    {
+        $soapClient = new SoapClient('http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL');
+
+                $ct_name = $country;
+
+                $countryName = array(
+                    'sCountryName'=>$ct_name
+                    );
+
+                $code_tmp= $soapClient->CountryISOCode ($countryName);
+
+                $code =json_decode(json_encode($code_tmp), true);
+
+                $code = $code['CountryISOCodeResult'];
+
+                $param2 = array(
+                    'sCountryISOCode'=>($code)
+                );
+                
+                $countryInfo =$soapClient->FullCountryInfo ($param2);
+
+                $countryData=json_decode(json_encode($countryInfo), true);
+
+                return response()->json($countryInfo);
+
+    }
 
 }
