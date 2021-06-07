@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\SoapController@data');
+
+Route::get('/Soap_Call', 'App\Http\Controllers\SoapController@data');
