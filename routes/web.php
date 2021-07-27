@@ -12,7 +12,3 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'App\Http\Controllers\SoapController@data');
-
-Route::get('/Soap_Call', 'App\Http\Controllers\SoapController@data');

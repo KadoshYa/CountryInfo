@@ -176,6 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Verschuur\Laravel\RobotsTxt\Providers\RobotsTxtProvider::class
+
 
     ],
 
